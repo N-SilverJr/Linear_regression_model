@@ -1,1 +1,1 @@
-# Linear_regression_model
+# Linear_regression_mode
