@@ -17,8 +17,8 @@ linear_regression_model/
 ├── summative/
 │   ├── linear_regression/
 │   │   ├── multivariate.ipynb       ← Main notebook (EDA, models, evaluation)
-│   │   ├── best_model.pkl           ← Saved best-performing model
-│   │   ├── scaler.pkl               ← Saved StandardScaler
+│   │   ├── best_model.pkl           ← Saved best-performing pipeline (preprocessing + model)
+│   │   ├── scaler.pkl               ← Legacy artifact (not required by current pipeline)
 │   │   └── Student_performance_data _.csv  ← Dataset (download from Kaggle)
 │   ├── API/                         ← (To be completed)
 │   └── FlutterApp/                  ← (To be completed)
@@ -32,10 +32,12 @@ linear_regression_model/
 | Linear Regression | Closed-form solution via scikit-learn |
 | Linear Regression (GD) | Gradient descent via SGDRegressor — loss curve plotted |
 | Decision Tree | Depth-limited regressor |
-| **Random Forest** | **Best performer** — 200 estimators |
+| Random Forest | 200 estimators (compared in notebook) |
+
+> Best model is selected automatically at runtime using lowest Test MSE.
 
 ## How to Run
 1. Download the dataset from the Kaggle link above
 2. Place `Student_performance_data _.csv` in `summative/linear_regression/`
 3. Open `multivariate.ipynb` in Jupyter and run all cells
-4. The best model is automatically saved as `best_model.pkl`
+4. The best pipeline is automatically selected and saved as `best_model.pkl`
