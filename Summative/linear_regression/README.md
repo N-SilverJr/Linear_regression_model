@@ -1,4 +1,4 @@
-# 🎓 Predicting Student GPA — Linear Regression Summative
+# Student GPA Prediction - Linear Regression Summative
 
 ## Mission
 To leverage machine learning to predict student academic performance (GPA) based on behavioral, demographic, and socioeconomic factors — enabling educators to identify at-risk students early and implement targeted academic interventions before failure occurs.
@@ -6,38 +6,52 @@ To leverage machine learning to predict student academic performance (GPA) based
 ## Dataset
 **Source:** [Students Performance Dataset – Kaggle (Rabie El Kharoua)](https://www.kaggle.com/datasets/rabieelkharoua/students-performance-dataset)  
 **Size:** 2,392 students × 15 features  
-**Features include:** Study hours/week, absences, parental education, tutoring, extracurricular activities, parental support, sports, music, volunteering  
-**Target Variable:** `GPA` (continuous — regression task)
+**Features:** Study hours/week, absences, parental education, tutoring, extracurricular activities, parental support, sports, music, volunteering  
+**Target:** `GPA` (0.0 - 4.0 scale)
 
 ## Repository Structure
-
 ```
-linear_regression_model/
-│
-├── summative/
-│   ├── linear_regression/
-│   │   ├── multivariate.ipynb       ← Main notebook (EDA, models, evaluation)
-│   │   ├── best_model.pkl           ← Saved best-performing pipeline (preprocessing + model)
-│   │   ├── scaler.pkl               ← Legacy artifact (not required by current pipeline)
-│   │   └── Student_performance_data _.csv  ← Dataset (download from Kaggle)
-│   ├── API/                         ← (To be completed)
-│   └── FlutterApp/                  ← (To be completed)
-│
-└── README.md
+Summative/
+├── linear_regression/
+│   ├── multivariate.ipynb       # EDA, models, evaluation
+│   ├── best_model.pkl           # Saved best model
+│   └── Student_performance_data _.csv
+├── API/
+│   ├── api.py                   # FastAPI application
+│   └── requirements.txt         # Python dependencies
+└── FlutterApp/
+    ├── lib/main.dart            # Flutter app
+    └── pubspec.yaml             # Flutter dependencies
 ```
 
-## Models Trained
-| Model | Description |
-|---|---|
-| Linear Regression | Closed-form solution via scikit-learn |
-| Linear Regression (GD) | Gradient descent via SGDRegressor — loss curve plotted |
-| Decision Tree | Depth-limited regressor |
-| Random Forest | 200 estimators (compared in notebook) |
-
-> Best model is selected automatically at runtime using lowest Test MSE.
+## API Endpoint (Public)
+**Base URL:** `https://linear-regression-model-riws.onrender.com`  
+**Swagger UI:** `https://linear-regression-model-riws.onrender.com/docs`
 
 ## How to Run
-1. Download the dataset from the Kaggle link above
-2. Place `Student_performance_data _.csv` in `summative/linear_regression/`
-3. Open `multivariate.ipynb` in Jupyter and run all cells
-4. The best pipeline is automatically selected and saved as `best_model.pkl`
+
+### API
+```bash
+cd Summative/API
+pip install -r requirements.txt
+uvicorn api:app --host 0.0.0.0 --port 8000
+```
+
+### Flutter App
+```bash
+cd Summative/FlutterApp
+flutter pub get
+flutter run
+```
+
+## Model Performance
+| Model | Test MSE | Test R² |
+|-------|----------|---------|
+| Linear Regression | 0.0387 | 0.9532 |
+| Random Forest | 0.0630 | 0.9238 |
+| Decision Tree | 0.1016 | 0.8772 |
+
+**Best Model:** Linear Regression (lowest MSE)
+
+## Video Demo
+[YouTube Video Link] - 7-minute demonstration of model deployment
