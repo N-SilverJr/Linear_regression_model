@@ -49,14 +49,14 @@ load_model()
 
 
 class PredictionInput(BaseModel):
-    Age: int = Field(..., ge=15, le=18, description="Student age (15-18)")
+    Age: int = Field(..., ge=13, le=21, description="Student age (13-21)")
     Gender: int = Field(..., ge=0, le=1, description="Gender (0=Male, 1=Female)")
-    Ethnicity: int = Field(..., ge=0, le=3, description="Ethnicity (0-3)")
-    ParentalEducation: int = Field(..., ge=0, le=4, description="Parental education level (0-4)")
+    Ethnicity: int = Field(..., ge=0, le=3, description="Ethnicity (0=Caucasian, 1=African American, 2=Asian, 3=Hispanic)")
+    ParentalEducation: int = Field(..., ge=0, le=4, description="Parental education level (0=None, 1=High School, 2=Some College, 3=Bachelor, 4=Graduate)")
     StudyTimeWeekly: float = Field(..., ge=0.0, le=20.0, description="Weekly study hours (0-20)")
     Absences: int = Field(..., ge=0, le=30, description="Number of absences (0-30)")
     Tutoring: int = Field(..., ge=0, le=1, description="Tutoring status (0=No, 1=Yes)")
-    ParentalSupport: int = Field(..., ge=0, le=4, description="Parental support level (0-4)")
+    ParentalSupport: int = Field(..., ge=0, le=4, description="Parental support level (0=None, 1=Low, 2=Medium, 3=High, 4=Very High)")
     Extracurricular: int = Field(..., ge=0, le=1, description="Extracurricular activities (0=No, 1=Yes)")
     Sports: int = Field(..., ge=0, le=1, description="Sports participation (0=No, 1=Yes)")
     Music: int = Field(..., ge=0, le=1, description="Music activities (0=No, 1=Yes)")
@@ -269,7 +269,7 @@ async def retrain_model(input_data: RetrainInput = None):
 async def predict_form():
     return {
         "features": [
-            {"name": "Age", "type": "integer", "min": 15, "max": 18},
+            {"name": "Age", "type": "integer", "min": 13, "max": 21},
             {"name": "Gender", "type": "integer", "min": 0, "max": 1},
             {"name": "Ethnicity", "type": "integer", "min": 0, "max": 3},
             {"name": "ParentalEducation", "type": "integer", "min": 0, "max": 4},
