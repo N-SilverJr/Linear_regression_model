@@ -51,7 +51,7 @@ load_model()
 class PredictionInput(BaseModel):
     Age: int = Field(..., ge=13, le=21, description="Student age (13-21)")
     Gender: int = Field(..., ge=0, le=1, description="Gender (0=Male, 1=Female)")
-    Ethnicity: int = Field(..., ge=0, le=3, description="Ethnicity (0=Caucasian, 1=African American, 2=Asian, 3=Hispanic)")
+    Ethnicity: int = Field(..., ge=0, le=3, description="Ethnicity (0=Black African, 1=Caucasian, 2=Asian, 3=Other)")
     ParentalEducation: int = Field(..., ge=0, le=4, description="Parental education level (0=None, 1=High School, 2=Some College, 3=Bachelor, 4=Graduate)")
     StudyTimeWeekly: float = Field(..., ge=0.0, le=20.0, description="Weekly study hours (0-20)")
     Absences: int = Field(..., ge=0, le=30, description="Number of absences (0-30)")
