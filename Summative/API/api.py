@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field, field_validator
 from typing import List
 import joblib
 import numpy as np
+import pandas as pd
 import os
 
 app = FastAPI(
@@ -150,7 +151,8 @@ async def predict(input_data: PredictionInput):
             'Sports', 'Music', 'Volunteering'
         ]
         
-        features = np.array([[input_dict[feat] for feat in feature_names]])
+        features = pd.DataFrame([[input_dict[feat] for feat in feature_names]], 
+                                columns=feature_names)
         
         prediction = model.predict(features)[0]
         
