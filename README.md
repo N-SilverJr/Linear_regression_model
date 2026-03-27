@@ -54,4 +54,4 @@ flutter run
 **Best Model:** Linear Regression (lowest MSE)
 
 ## Video Demo
-[YouTube Video Link] - 7-minute demonstration of model deployment
+[https://youtu.be/8h4GddUdhdk] - 7-minute demonstration of model deployment
